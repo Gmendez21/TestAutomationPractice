@@ -1,0 +1,158 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.qa</groupId>
+  <artifactId>SeleniumCucumber</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  
+  <name>SeleniumCucumber</name>
+<url>https://maven.apache.org/</url>
+
+<properties>
+
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<java.version>1.8</java.version>
+<junit.version>4.13.2</junit.version>
+<cucumber.version>7.0.0-RC1</cucumber.version>
+<maven.compiler.version>3.8.1</maven.compiler.version>
+<maven.surefire.version>3.0.0-M7</maven.surefire.version>
+
+</properties>
+<dependencies>
+<dependency>
+<groupId>io.cucumber</groupId>
+<artifactId>cucumber-java</artifactId>
+<version>${cucumber.version}</version>
+</dependency>
+
+<dependency>
+<groupId>io.cucumber</groupId>
+<artifactId>cucumber-junit</artifactId>
+<version>${cucumber.version}</version>
+</dependency>
+
+<dependency>
+<groupId>junit</groupId>
+<artifactId>junit</artifactId>
+<version>${junit.version}</version>
+</dependency>
+
+<dependency>
+<groupId>org.seleniumhq.selenium</groupId>
+<artifactId>selenium-java</artifactId>
+<version>4.6.0</version>
+</dependency>
+
+<dependency>
+<groupId>tech.grasshopper</groupId>
+<artifactId>extentreports-cucumber7-adapter</artifactId>
+<version>1.0.0</version>
+</dependency>
+
+<dependency>
+<groupId>org.apache.commons</groupId>
+<artifactId>commons-lang3</artifactId>
+<version>3.12.0</version>
+</dependency>
+
+<dependency>
+<groupId>io.rest-assured</groupId>
+<artifactId>rest-assured</artifactId>
+<version>4.4.0</version>
+</dependency>
+
+<dependency>
+<groupId>org.hamcrest</groupId>
+<artifactId>hamcrest</artifactId>
+<version>2.2</version>
+</dependency>
+<dependency>
+<groupId>javax.mail</groupId>
+<artifactId>mail</artifactId>
+<version>1.5.0-b01</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+<dependency>
+<groupId>org.testng</groupId>
+<artifactId>testng</artifactId>
+<version>7.6.1</version>
+<scope>test</scope>
+</dependency>
+
+
+</dependencies>
+
+<build>
+<plugins>
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-compiler-plugin</artifactId>
+<version>${maven.compiler.version}</version>
+<configuration>
+<encoding>UTF-8</encoding>
+<source>${java.version}</source>
+<target>${java.version}</target>
+</configuration>
+</plugin>
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-surefire-plugin</artifactId>
+<version>${maven.surefire.version}</version>
+<configuration>
+<includes>
+<include>**/TestRunnerIT.java</include>
+</includes>
+<parallel>methods</parallel>
+<useUnlimitedThreads>true</useUnlimitedThreads>
+</configuration>
+</plugin>
+
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-failsafe-plugin</artifactId>
+<version>3.0.0-M3</version>
+<executions>
+<execution>
+<goals>
+<goal>integration-test</goal>
+</goals>
+<configuration>
+
+
+<!-- <excludes> <exclude>**/*IT*.java</exclude> </excludes> -->
+
+<includes>
+
+<!-- UNCOMMENT BELOW LINE - To execute feature files with a single
+runner -->
+
+<include>**/TestRunnerIT.java</include>
+<!-- UNCOMMENT BELOW LINE - To execute feature files with multiple
+runners -->
+<!-- <include>**/*Runner.java</include> -->
+</includes>
+
+<!-- UNCOMMENT BELOW 3 LINES - To execute using parallel or combination
+option -->
+
+<parallel>methods</parallel>
+<threadCount>4</threadCount>
+<perCoreThreadCount>true</perCoreThreadCount>
+
+
+<!-- UNCOMMENT BELOW 3 LINES - To execute using forking or combination
+option -->
+<!-- <forkCount>2</forkCount> <reuseForks>true</reuseForks> <reportsDirectory>${project.build.directory}/failsafe-reports_${surefire.forkNumber}</reportsDirectory> -->
+</configuration>
+</execution>
+</executions>
+</plugin>
+
+
+</plugins>
+</build>
+</project>
+
+
+  
